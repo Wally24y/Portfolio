@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <header class="one">
+            <div><button id="homebtn">Home</button></div>
+            <div><button id="aboutbtn">About</button></div>
+            <div><button id="skillsbtn">Projects</button></div>
+            <div><button id="contactbtn">Contact</button></div>
+        </header>
+        <section id="home">
+             <div class="change"><i id="modeToggle" class="fa-solid fa-moon" title="Toggle dark mode"></i></div>
+            <div id="img">
+                <div class="img1"></div>
+            </div>
+            <div class="first">
+                <h1 class="div1">Hello<span class="div12" id="type3"></span></h1>
+                <h1 id="type1"><span class="span1"></span></h1>
+                <h2><span id="type2" class="span2"></span></h2>
+                <a href="cv.pdf" download><button class="download">Download CV</button></a>
+            </div>
+        </section>
+        <section id="about" class="notRight">
+            <h1>About Me</h1>
+            <div class="about">
+                <div>
+                    <h2>Software Developer</h2>
+                    <p id="fadeUp">I am a reliable web and system developer with a background in 
+                        Mathematics and Computer Science, currently based in Kenya and graduating 
+                        in 2026. I design clean, responsive websites and simple web applications such 
+                        as calculators, forms, and data-driven tools. <br>I also develop basic backend
+                        systems using Python and PHP to automate tasks, manage data, and support small
+                        business or academic needs. In addition, I offer accurate data entry and 
+                        documentation services using Microsoft Excel, Word, and PowerPoint, ensuring well-organized and professional outputs.
+                        <br>Open to remote and part-time opportunities.
+                    </p>
+                    <button id="contactbtn1">Contact me</button>
+                </div>
+                <div>
+                    <h2>Languages and skills</h2>
+                    <div>
+                        <div class="skill-block">
+                            <h3 class="skill-title">Frontend development</h3>
+                            <ul>
+                                <li class="skill-item">HTML5</li>
+                                <li class="skill-item">CSS</li>
+                                <li class="skill-item">Javascript</li>
+                            </ul>
+                        </div>
+                        <div class="skill-block">
+                            <h3 class="skill-title">Backend development</h3>
+                            <ul>
+                                <li class="skill-item">Python</li>
+                                <li class="skill-item">PHP</li>
+                            </ul>
+                        </div>
+                         <div class="skill-block">
+                            <h3 class="skill-title">Data & Productivity Tools</h3>
+                            <ul>
+                                <li class="skill-item">Excel (data entry, basic data analysis)</li>
+                                <li class="skill-item">Word </li>
+                                <li class="skill-item">PowerPoint </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="skills" class="notTop">
+            <h1>Projects</h1>
+            <main class="slider-wrapper">
+                <button class="slide-btn left">&#10094;</button>
+                <button class="slide-btn right" id="right4">&#10095;</button>
+                <div class="project-slider" id="projectSlider">
+                    <div id="project1" class="project-card">
+                        <h4>Construstion company's website</h4>
+                        <div class="slide">
+                            <div>
+                                <p>Year:</p>
+                                <p>Status</p>
+                                <button><i class="fa-solid fa-arrow-up-right-from-square"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="project2" class="project-card">
+                        <h4>Construstion company's website</h4>
+                        <div class="slide">
+                            <div>
+                                <p>Year:</p>
+                                <p>Status</p>
+                                <button><i class="fa-solid fa-arrow-up-right-from-square"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="project3" class="project-card">
+                        <h4>Construstion company's website</h4>
+                        <div class="slide">
+                            <div>
+                                <p>Year:</p>
+                                <p>Status</p>
+                                <button><i class="fa-solid fa-arrow-up-right-from-square"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="project3" class="project-card">
+                        <h4>Construstion company's website</h4>
+                        <div class="slide">
+                            <div>
+                                <p>Year:</p>
+                                <p>Status</p>
+                                <button><i class="fa-solid fa-arrow-up-right-from-square"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    
+            </main>
+        </section>
+        <section id="contact" class="notDown">
+            <div class="contactDiv">
+                <div>
+                    <h1>Contact Me</h1>
+                    <div class="leftDiv">
+                        <p><a href="mailto:waltermlay@gmail.com" class="floatEven"> <i class="fa-solid fa-envelope"></i> <span>
+                                     waltermlay@gmail.com</span></a></p>
+                        <p><a href="tel:+254718030286" class="floatEven"><i class="fa-solid fa-phone"></i> <span> +254718030286</span>
+                            </a></p>
+                        <div class="icons4"><a href=""><i class="fa-brands fa-linkedin"></i></a>
+                            <a href=""><i class="fa-brands fa-github"></i></a>
+                            <a href=""><i class="fa-brands fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <form action="">
+                    <div>
+                        <input type="text" id="name" placeholder="Your name...">
+                    </div>
+                    <div>
+                        <input type="email" name="email1" id="email" placeholder="Your email...">
+                    </div>
+                    <div class="textarea">
+                        <textarea name="textarea1" id="enquiries" rows="13" placeholder="Your message..."></textarea>
+                    </div>
+                    <div class="fbutton">
+                        <button type="submit">Submit</button>
+                    </div>
+                </form>
+            </div>
+            <footer>
+                <div>
+                    <p>@ 2025 Walter Joseph. All rights reserved.</p>
+                </div>
+            </footer>
+        </section>
+    </div>
+
+    <script src="index.js"></script>
+</body>
+
+</html>
