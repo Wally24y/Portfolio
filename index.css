@@ -16,8 +16,11 @@ body {
     position: fixed;
     right: 10px;
     z-index: 100;
-    padding: 10px 0;
+
     background-color: transparent;
+}
+.one button{
+    margin-top: 3px;
 }
 
 .icons {
@@ -47,16 +50,18 @@ body {
     align-items: center;
     gap: 1rem;
     transition: all 1s linear;
+    background-color: rgba(95, 158, 160, 0.055);
 }
 
 .download,
-form button {
+form button,button {
     border: 2px solid black;
     padding: 4px 10px;
     border-radius: 12px;
     margin-top: 10px;
     max-width: 200px;
     font-size: 1rem;
+    background-color: transparent;
 }
 
 section {
@@ -74,14 +79,18 @@ section {
     align-items: center;
     top: 0;
     transition: all 1s linear;
+    background-color: rgba(0, 0, 255, 0.082);
 }
-
+#contact {
+    background-color: rgba(30, 143, 255, 0.102);
+}
 #home {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 2rem;
     justify-content: space-around;
     align-items: center;
+    background-color: #00b7ff11;
 }
 
 .img1 {
@@ -258,6 +267,7 @@ a {
 
 button {
     cursor: pointer;
+    background-color: transparent;
 }
 
 .notDown {
@@ -276,16 +286,16 @@ button {
 
 
 body.dark-mode {
-    background-color: #121212;
+    background-color: black;
     color: #f1f1f1;
 }
 
 body.dark-mode header.one {
-    background-color: #1e1e1e;
+    background-color: transparent;
 }
 
 body.dark-mode section {
-    background-color: #1a1a1a;
+    background-color: black;
 }
 
 body.dark-mode h1,
@@ -390,7 +400,7 @@ footer {
 
 .span2 {
     color: rgb(33, 9, 121);
-    font-size: 2.5rem;
+    font-size: 3rem;
 }
 
 .typing-container {
@@ -400,13 +410,6 @@ footer {
     /* aligns cursor to text baseline */
     gap: 2px;
     /* optional spacing between text and cursor */
-}
-
-.cursor {
-    display: inline-block;
-    color: black;
-    /* cursor color */
-    animation: blink 0.7s steps(1) infinite;
 }
 
 .div1 {
@@ -526,6 +529,9 @@ h1 {
     padding: 4px;
     border-radius: 50%;
     border: none;
+}
+#fadeUp{
+    font-size: 1.1rem;
 }
 @media screen and (max-width:1260px) {
     .project-slider {

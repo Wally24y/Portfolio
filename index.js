@@ -60,65 +60,70 @@ document.addEventListener("DOMContentLoaded", () => {
     })
 
     // Measure width BEFORE cloning
-const originalCard = cards[0];
+    if (!cards.length) return;
+    const originalCard = cards[0];
 
-// read gap safely (fallback to 24)
-let gapVal = getComputedStyle(slider).gap;
-gapVal = gapVal ? parseFloat(gapVal) : 24;
+    // read gap safely (fallback to 24)
+    let gapVal = getComputedStyle(slider).gap;
+    gapVal = gapVal ? parseFloat(gapVal) : 24;
 
-// compute cardWidth
-const cardWidth = originalCard.offsetWidth + gapVal;
+    // compute cardWidth
+    let cardWidth = originalCard.offsetWidth + gapVal;
+    window.addEventListener("resize", () => {
+        cardWidth = originalCard.offsetWidth + gapVal;
+        slider.scrollLeft = cardWidth * index;
+    });
+    // Clone first & last cards for infinite loop
+    const firstClone = originalCard.cloneNode(true);
+    const lastClone = cards[cards.length - 1].cloneNode(true);
 
-// Clone first & last cards for infinite loop
-const firstClone = originalCard.cloneNode(true);
-const lastClone = cards[cards.length - 1].cloneNode(true);
+    // Insert clones: lastClone at start, firstClone at end
+    slider.insertBefore(lastClone, slider.firstChild);
+    slider.appendChild(firstClone);
 
-// Insert clones: lastClone at start, firstClone at end
-slider.insertBefore(lastClone, slider.firstChild);
-slider.appendChild(firstClone);
+    // Update cards list
+    cards = Array.from(slider.children);
 
-// Update cards list
-cards = Array.from(slider.children);
-
-// Start at the first real card
-index = 1;
-slider.scrollLeft = cardWidth * index;
-
-// Flag to prevent multiple clicks while animating
-let isScrolling = false;
-
-// Smooth scroll function
-function smoothScroll() {
-    slider.style.scrollBehavior = "smooth";
+    // Start at the first real card
+    index = 1;
     slider.scrollLeft = cardWidth * index;
 
-    // If we hit a clone, jump instantly to the real card
-    if (index === 0) { // leading clone
-        slider.style.scrollBehavior = "auto";
-        index = cards.length - 2;
-        slider.scrollLeft = cardWidth * index;
+    // Flag to prevent multiple clicks while animating
+    let isScrolling = false;
+
+    // Smooth scroll function
+    function smoothScroll() {
+        isScrolling = true;
         slider.style.scrollBehavior = "smooth";
-    } else if (index === cards.length - 1) { // trailing clone
-        slider.style.scrollBehavior = "auto";
-        index = 1;
         slider.scrollLeft = cardWidth * index;
-        slider.style.scrollBehavior = "smooth";
+
+        // If we hit a clone, jump instantly to the real card
+        if (index === 0) { // leading clone
+            slider.style.scrollBehavior = "auto";
+            index = cards.length - 2;
+            slider.scrollLeft = cardWidth * index;
+            slider.style.scrollBehavior = "smooth";
+        } else if (index === cards.length - 1) { // trailing clone
+            slider.style.scrollBehavior = "auto";
+            index = 1;
+            slider.scrollLeft = cardWidth * index;
+            slider.style.scrollBehavior = "smooth";
+        }
     }
-}
 
-// Right button
-document.querySelector('.slide-btn.right').addEventListener('click', () => {
-    if (isScrolling) return;
-    index++;
-    smoothScroll();
-});
+    // Right button
+    document.querySelector('.slide-btn.right').addEventListener('click', () => {
+        if (isScrolling) return;
+        index++;
+        smoothScroll();
+    });
 
-// Left button
-document.querySelector('.slide-btn.left').addEventListener('click', () => {
-    if (isScrolling) return;
-    index--;
-    smoothScroll();
-});
+    // Left button
+    document.querySelector('.slide-btn.left').addEventListener('click', () => {
+        if (isScrolling) return;
+        index--;
+        smoothScroll();
+    });
 
     if (localStorage.getItem("theme") === "dark") {
         document.body.classList.add("dark-mode");
@@ -272,6 +277,53 @@ document.querySelector('.slide-btn.left').addEventListener('click', () => {
 
     //  Run full animation ONLY on first load
     runFullHomeTyping();
+    
+    const form = document.getElementById("contactForm");
+    const formStatus = document.getElementById("formStatus");
+
+    // Simple email validation
+    function validateEmail(email) {
+        return /^\S+@\S+\.\S+$/.test(email);
+    }
+
+    form.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        // Basic validation
+        const name = document.getElementById("name").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const message = document.getElementById("message").value.trim();
+
+        if (!name || !email || !message) {
+            formStatus.textContent = "Please fill in all fields!";
+            formStatus.style.color = "red";
+            return;
+        }
+
+        if (!validateEmail(email)) {
+            formStatus.textContent = "Enter a valid email address!";
+            formStatus.style.color = "red";
+            return;
+        }
+
+        // Prepare data for Netlify
+        const formData = new FormData(form);
+        fetch("/", {
+            method: "POST",
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: new URLSearchParams(formData).toString()
+        })
+            .then(() => {
+                formStatus.textContent = "Form submitted successfully!";
+                formStatus.style.color = "green";
+                form.reset();
+            })
+            .catch((err) => {
+                console.error(err);
+                formStatus.textContent = "Error submitting form. Try again.";
+                formStatus.style.color = "red";
+            });
+    });
 }
 );
 

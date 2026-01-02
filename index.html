@@ -39,7 +39,7 @@
                         in 2026. I design clean, responsive websites and simple web applications such 
                         as calculators, forms, and data-driven tools. <br>I also develop basic backend
                         systems using Python and PHP to automate tasks, manage data, and support small
-                        business or academic needs. In addition, I offer accurate data entry and 
+                        business or academic needs. <br> In addition, I offer accurate data entry and 
                         documentation services using Microsoft Excel, Word, and PowerPoint, ensuring well-organized and professional outputs.
                         <br>Open to remote and part-time opportunities.
                     </p>
@@ -111,7 +111,7 @@
                             </div>
                         </div>
                     </div>
-                    <div id="project3" class="project-card">
+                    <div id="project4" class="project-card">
                         <h4>Construstion company's website</h4>
                         <div class="slide">
                             <div>
@@ -140,20 +140,23 @@
                         </div>
                     </div>
                 </div>
-                <form action="">
+                <form name="contact" id="contactForm" method="POST" data-netlify="true">
+                     <!-- Netlify form hidden input -->
+                    <input type="hidden" name="form-name" value="contact" />
                     <div>
-                        <input type="text" id="name" placeholder="Your name...">
+                        <input type="text" id="name" name="name" placeholder="Enter your name..." required>
                     </div>
                     <div>
-                        <input type="email" name="email1" id="email" placeholder="Your email...">
+                        <input type="email" name="email" id="email" placeholder="Enter your email..." required>
                     </div>
                     <div class="textarea">
-                        <textarea name="textarea1" id="enquiries" rows="13" placeholder="Your message..."></textarea>
+                        <textarea name="textarea" id="textarea" rows="13" placeholder="Enter your message..."></textarea>
                     </div>
                     <div class="fbutton">
                         <button type="submit">Submit</button>
                     </div>
                 </form>
+                <div id="formStatus"></div>
             </div>
             <footer>
                 <div>
