@@ -25,7 +25,9 @@ document.addEventListener("DOMContentLoaded", () => {
         skillpg.classList.remove("top");
         contactpg.classList.remove("down");
         homepg.classList.add("opacity1");
+          if (fadeUP) {
         fadeUP.classList.remove("animate");
+    }
     }
 
     aboutbtn.addEventListener("click", function () {
@@ -53,12 +55,14 @@ document.addEventListener("DOMContentLoaded", () => {
         contactpg.classList.remove("notDown");
         contactpg.classList.add("down");
     })
-    contactbtn1.addEventListener("click", function () {
-        hideAll();
-        contactpg.classList.remove("notDown");
-        contactpg.classList.add("down");
-    })
 
+   if (contactbtn1) {
+        contactbtn1.addEventListener("click", function () {
+            hideAll();
+            contactpg.classList.remove("notDown");
+            contactpg.classList.add("down");
+        });
+    }
     // Measure width BEFORE cloning
     if (!cards.length) return;
     const originalCard = cards[0];
@@ -96,6 +100,9 @@ document.addEventListener("DOMContentLoaded", () => {
         isScrolling = true;
         slider.style.scrollBehavior = "smooth";
         slider.scrollLeft = cardWidth * index;
+        setTimeout(() => {
+            isScrolling = false;
+        }, 500); // match scroll duration
 
         // If we hit a clone, jump instantly to the real card
         if (index === 0) { // leading clone
@@ -173,6 +180,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     }
     function resetFadeUp() {
+        if (!fadeUP) return;
         fadeUP.style.animation = "none";
         void fadeUP.offsetWidth; // force reflow
         fadeUP.style.animation = ""; // or fadeUP.classList.add("animate") if using classes
@@ -256,8 +264,10 @@ document.addEventListener("DOMContentLoaded", () => {
             () => runNameAndTitleTyping()
         );
     }
-
+    let typingRunning = false;
     function runNameAndTitleTyping() {
+        if (typingRunning) return;
+        typingRunning = true;
         startTypingEffect(
             type1,
             ["<span class='span1'>Walter Joseph.</span>"],
@@ -292,7 +302,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // Basic validation
         const name = document.getElementById("name").value.trim();
         const email = document.getElementById("email").value.trim();
-        const message = document.getElementById("message").value.trim();
+        const message = document.getElementById("textarea").value.trim();
 
         if (!name || !email || !message) {
             formStatus.textContent = "Please fill in all fields!";
@@ -326,6 +336,15 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 }
 );
+function setViewportHeight() {
+    document.documentElement.style.setProperty(
+        '--vh',
+        `${window.innerHeight * 0.01}px`
+    );
+}
+
+setViewportHeight();
+window.addEventListener('resize', setViewportHeight);
 
 if (document.readyState === "complete") {
     document.body.classList.add("ready");

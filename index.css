@@ -1,12 +1,14 @@
 body {
     margin: 0;
     box-sizing: border-box;
-    overflow: hidden;
     position: relative;
 }
 
 .container {
-    width: 100%;
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    height: calc(var(--vh) * 100);
 }
 
 .one {
@@ -65,12 +67,16 @@ form button,button {
 }
 
 section {
-    height: 100vh;
     padding: 10px;
     width: 100%;
     position: absolute;
     transition: all 1s ease;
     margin: 0;
+    height: 100%;
+    pointer-events: none;
+}
+section:not(.notRight):not(.notTop):not(.notDown) {
+    pointer-events: auto;
 }
 
 #about {
